@@ -35,7 +35,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Contact">Contact<span class="text-danger">*</span></label>
-                                            <select name="contact_id" id="contact" class="form-control">
+                                            <select name="contactId" id="contact" class="form-control" required>
                                                 <option></option>
                                                 @foreach ($customerContacts as $customerContact)
                                                     <option value="{{ $customerContact->razorpay_con_id }}">{{ $customerContact->razorpay_con_id . " - " . $customerContact->name }}</option>
@@ -48,14 +48,14 @@
                                             <label for="Account Type">Account Type <span class="text-danger">*</span></label>
                                             <select name="type" id="account-type" class="form-control" required>
                                                 <option value="vpa">UPI ID</option>
-                                                <option value="vpa" selected>Bank a/c</option>
+                                                <option value="back_account" selected>Bank a/c</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4" id="vpa-section" style="display: none;">
                                         <div class="form-group">
                                             <label for="VPA (UPI ID)">VPA (UPI ID) <span class="text-danger">*</span></label>
-                                            <input type="number" name="upi_id" class="form-control" placeholder="upi@server">
+                                            <input type="text" name="upi_id" class="form-control vpa-common-input" placeholder="upi@server" required>
                                         </div>
                                     </div>
                                 </div>
@@ -63,20 +63,20 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Account Type">Account Number <span class="text-danger">*</span></label>
-                                            <input type="number" name="account_number" class="form-control" placeholder="Enter account number">
-                                            <input type="number" name="account_number" class="form-control mt-2" placeholder="Re-enter account number">
+                                            <input type="text" name="account_number" id="account_number" class="form-control bank-common-input" placeholder="Enter account number" required>
+                                            <input type="text" name="re_account_number" class="form-control bank-common-input mt-2" placeholder="Re-enter account number" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="IFSC">IFSC <span class="text-danger">*</span></label>
-                                            <input type="text" name="ifsc" class="form-control" placeholder="IFSC of the bank account">
+                                            <input type="text" name="ifsc" class="form-control bank-common-input" placeholder="IFSC of the bank account" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Beneficiary Name">Beneficiary Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="beneficiary_name" class="form-control">
+                                            <input type="text" name="beneficiary_name" class="form-control bank-common-input" required>
                                         </div>
                                     </div>
                                 </div>
@@ -104,69 +104,94 @@
 <script>
     $(document).ready(function () {
 
+        /*
+            TODO : add jquery validation for VPA(UPI ID)
+        */
+       
         $('#contact').select2({
             placeholder : "Select contact",
             allowClear : true
         });
 
         $(document).on("change" , "#account-type", function () {
-            $("#vpa-section").show();
-            $("#bank-account-section").hide();
+            if ($(this).val() == "vpa") {
+                $(".vpa-common-input").prop('required',true);
+                $(".bank-common-input").val(null).prop('required',false);
+
+                $("#bank-account-section").hide();
+                $("#vpa-section").show();
+            }else if($(this).val() == "back_account"){
+                $(".bank-common-input").prop('required',true);
+                $(".vpa-common-input").val(null).prop('required',false);
+                
+                $("#vpa-section").hide();
+                $("#bank-account-section").show();
+            }else{
+                alert("Please select valid account type");
+            }
         });
 
         $('#createForm').validate({
             rules: {
-                name: {
-                    required: true
-                },
-                email: {
+                contactId: {
                     required: true,
-                    email: true,
-                },
-                phone: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10,
                 },
                 type: {
                     required: true,
                 },
-                status: {
+                account_number: {
+                    required: true,  
+                },
+                re_account_number: {
                     required: true,
+                    equalTo: '#account_number'
+                },
+                ifsc: {
+                    required: true,
+                    minlength: 11,
+                    maxlength: 11
+                },
+                beneficiary_name: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 120
                 }
             },
             messages: {
-                name : {
-                    required: "Please enter customer name"
-                },
-                email: {
-                    required: "Please enter a email address",
-                    email: "Please enter a valid email address"
-                },
-                phone: {
-                    required: "Please enter contact number",
-                    digits: "Please enter valid contact number",
-                    minlength: "contact number must be 10 digit",
-                    maxlength: "contact number must be 10 digit",
+                contactId : {
+                    required: "Please select contact"
                 },
                 type : {
-                    required: "Please select customer type"
+                    required: "Please select account type"
                 },
-                status : {
-                    required: "Please select cusotmer status"
+                account_number : {
+                    required: "Please enter account number"
                 },
+                re_account_number : {
+                    required: "Please re-enter account number",
+                    equalTo: "Account no. does not match"
+                },
+                ifsc : {
+                    required: "Please enter IFSC code",
+                    minlength: "IFSC code must be 11 characters",
+                    maxlength: "IFSC code must be 11 characters",
+                },
+                beneficiary_name : {
+                    required: "Please enter beneficiary name",
+                    minlength: "Beneficiary name at least 3 characters",
+                    maxlength: "Beneficiary name no more than 120 characters",
+                }
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
             },
             highlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
+                $(element).addClass('is-invalid');
             },
             unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
+                $(element).removeClass('is-invalid');
             }
         });
     });
