@@ -6,10 +6,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Customers</h1>
+                <h1 class="m-0">Funds</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-                <a href="{{ route('customer.create') }}" class="btn btn-primary float-right">Add Customer</a>
+                <a href="{{ route('fund.create') }}" class="btn btn-primary float-right">Add Fund Account</a>
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -29,17 +29,17 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            {{-- <th>Id</th>
                                             <th>Name</th>
                                             <th>Type</th>
                                             <th>Phone</th>
                                             <th>Email</th>
                                             <th>Status</th>
-                                            <th>CONTACT_ID</th>
+                                            <th>CONTACT_ID</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($customers as $customer)
+                                        {{-- @foreach($customers as $customer)
                                         <tr>
                                             <td>{{ $customer->id }}</td>
                                             <td>{{ $customer->name }}</td>
@@ -55,7 +55,7 @@
                                             </td>
                                             <td>{{ $customer->razorpay_con_id }}</td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>

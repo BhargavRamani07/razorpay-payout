@@ -19,9 +19,10 @@ class CreateCustomersTabel extends Migration
             $table->string("email");
             $table->string("phone");
             $table->enum("type", ["vendor", "customer", "employee", "self"]);
-            $table->text("notes")->nullable();
             $table->boolean("status")->default(1)->comment("true : active, false : inactive");
-            $table->timestamps();
+            $table->dateTime("created_at")->useCurrent();
+            $table->dateTime("updated_at")->useCurrentOnUpdate()->nullable();
+            // $table->timestamps();
         });
     }
 
