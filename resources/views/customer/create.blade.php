@@ -59,15 +59,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="Status">Status <span class="text-danger">*</span></label>
-                                            <select name="status" class="form-control" required>
-                                                <option value="active">active</option>
-                                                <option value="inactive">inactive</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -108,9 +99,6 @@
                 },
                 type: {
                     required: true,
-                },
-                status: {
-                    required: true,
                 }
             },
             messages: {
@@ -129,10 +117,7 @@
                 },
                 type : {
                     required: "Please select customer type"
-                },
-                status : {
-                    required: "Please select cusotmer status"
-                },
+                }
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {

@@ -15,6 +15,7 @@ class CreateCustomersTabel extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string("razorpay_con_id");
             $table->string("name");
             $table->string("email");
             $table->string("phone");

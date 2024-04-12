@@ -28,7 +28,6 @@ class Customer extends Controller
             'email' => 'required|email|unique:customers,email',
             'phone' => 'required|numeric|digits:10',
             'type' => 'required|string|in:vendor,customer,employee,self',
-            'status' => 'required|string|in:active,inactive',
         ]);
 
         if ($validator->fails()) {
