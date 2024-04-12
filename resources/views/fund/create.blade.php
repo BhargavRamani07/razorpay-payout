@@ -28,7 +28,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="" method="post" id="createForm">
+                        <form action="{{ route("fund.store") }}" method="post" id="createForm">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -103,10 +103,6 @@
 
 <script>
     $(document).ready(function () {
-
-        /*
-            TODO : add jquery validation for VPA(UPI ID)
-        */
        
         $('#contact').select2({
             placeholder : "Select contact",
@@ -139,6 +135,11 @@
                 type: {
                     required: true,
                 },
+                upi_id: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
                 account_number: {
                     required: true,  
                 },
@@ -163,6 +164,11 @@
                 },
                 type : {
                     required: "Please select account type"
+                },
+                upi_id : {
+                    required: "Please enter UPI ID",
+                    minlength: "UPI ID at least 3 characters",
+                    maxlength: "UPI ID no more than 100 characters",
                 },
                 account_number : {
                     required: "Please enter account number"

@@ -29,4 +29,5 @@ Route::prefix('admin')->group(function () {
 
     Route::get('funds', [Fund::class, 'index']);
     Route::get("fund/create", [Fund::class, 'create'])->name('fund.create');
+    Route::post("fund-store", [Fund::class, 'store'])->name('fund.store');
 });
