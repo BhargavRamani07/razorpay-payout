@@ -50,9 +50,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('admin/customers') }}" class="nav-link {{ request()->is('admin/customers') ? 'active' : '' }}">
+                            <a href="{{ url('admin/contacts') }}" class="nav-link {{ request()->is('admin/contacts') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Customers</p>
+                                <p>View Contacts</p>
                             </a>
                         </li>
                         <li class="nav-item">

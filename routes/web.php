@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Customer;
+use App\Http\Controllers\Contact;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Fund;
 use Illuminate\Support\Facades\Route;
+use Faker\Provider\en_IN\PhoneNumber;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get("generate-phone-number", function(){
+    $phoneNumber = PhoneNumber::mobileNumber();
+    $email = \Faker\Factory::create()->freeEmail;
+    dd([$email, $phoneNumber]);
+});
 
 Route::prefix('admin')->group(function () {
     Route::get("dashboard", [Dashboard::class, 'index']);
 
-    Route::get("customers", [Customer::class, 'index']);
-    Route::get("customer/create", [Customer::class, 'create'])->name('customer.create');
-    Route::post("customer-store", [Customer::class, 'store'])->name('customer.store');
+    Route::get("contacts", [Contact::class, 'index']);
+    Route::get("contact/create", [Contact::class, 'create'])->name('contact.create');
+    Route::post("contact-store", [Contact::class, 'store'])->name('contact.store');
+    Route::get("contact-status-mark/{contact}", [Contact::class, 'markStatus'])->name('contact.markStatus');
 
     Route::get('funds', [Fund::class, 'index']);
     Route::get("fund/create", [Fund::class, 'create'])->name('fund.create');

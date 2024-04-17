@@ -37,8 +37,8 @@
                                             <label for="Contact">Contact<span class="text-danger">*</span></label>
                                             <select name="contactId" id="contact" class="form-control" required>
                                                 <option></option>
-                                                @foreach ($customerContacts as $customerContact)
-                                                    <option value="{{ $customerContact->razorpay_con_id }}">{{ $customerContact->razorpay_con_id . " - " . $customerContact->name }}</option>
+                                                @foreach ($contacts as $contact)
+                                                    <option value="{{ $contact->razorpay_con_id }}">{{ $contact->razorpay_con_id . " - " . $contact->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -48,7 +48,7 @@
                                             <label for="Account Type">Account Type <span class="text-danger">*</span></label>
                                             <select name="type" id="account-type" class="form-control" required>
                                                 <option value="vpa">UPI ID</option>
-                                                <option value="back_account" selected>Bank a/c</option>
+                                                <option value="bank_account" selected>Bank a/c</option>
                                             </select>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
 
                 $("#bank-account-section").hide();
                 $("#vpa-section").show();
-            }else if($(this).val() == "back_account"){
+            }else if($(this).val() == "bank_account"){
                 $(".bank-common-input").prop('required',true);
                 $(".vpa-common-input").val(null).prop('required',false);
                 

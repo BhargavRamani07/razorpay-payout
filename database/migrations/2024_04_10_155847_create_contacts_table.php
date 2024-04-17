@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomersTabel extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCustomersTabel extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->string("razorpay_con_id");
             $table->string("name");
@@ -34,6 +34,6 @@ class CreateCustomersTabel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers_tabel');
+        Schema::dropIfExists('contacts_table');
     }
 }
