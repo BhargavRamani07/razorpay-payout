@@ -36,9 +36,9 @@
 
 @if ($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <ul class="m-0">
+  <ul class="m-0 list-unstyled">
     @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
+    <li class="pb-1">{{ $error }}</li>
     @endforeach
   </ul>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

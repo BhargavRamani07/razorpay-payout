@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Customer</h1>
+                <h1 class="m-0">Contact</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -21,25 +21,25 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add Customer</h3>
+                            <h3 class="card-title">Add Contact</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('customer.store') }}" method="post" id="createForm">
+                        <form action="{{ route('contact.store') }}" method="post" id="createForm">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="Name">Customer name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" placeholder="Enter customer name" required>
+                                            <label for="Name">Contact name <span class="text-danger">*</span></label>
+                                            <input type="text" name="name" class="form-control" placeholder="Enter contact name" required>
                                             
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Email">Email address <span class="text-danger">*</span></label>
-                                            <input type="email" name="email" class="form-control" placeholder="Enter customer email" required>
+                                            <input type="email" name="email" class="form-control" placeholder="Enter contact email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -103,7 +103,7 @@
             },
             messages: {
                 name : {
-                    required: "Please enter customer name"
+                    required: "Please enter contact name"
                 },
                 email: {
                     required: "Please enter a email address",
@@ -116,7 +116,7 @@
                     maxlength: "contact number must be 10 digit",
                 },
                 type : {
-                    required: "Please select customer type"
+                    required: "Please select contact type"
                 }
             },
             errorElement: 'span',
