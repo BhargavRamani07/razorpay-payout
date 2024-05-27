@@ -31,21 +31,11 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped" id="fundaccount-report">
+                                <table class="table table-bordered table-striped table-sm" id="fundaccount-report">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>CONTACT_ID</th>
-                                            <th>FUND_ID</th>
-                                            <th>Account Type</th>
-                                            <th>Ifsc</th>
-                                            <th>Bank Name</th>
-                                            <th>Beneficiary Name</th>
-                                            <th>Account No</th>
-                                            <th>UPI Username</th>
-                                            <th>UPI Handle</th>
-                                            <th>UPI Address</th>
-                                            <th>Status</th>
+                                            <th>CONTACT</th>
+                                            <th>No Accounts</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -70,23 +60,12 @@
     <script>
         $(document).ready(function () {
             var table = $('#fundaccount-report').DataTable({
-                pagingType: 'full_numbers',
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('admin/funds') }}",
                 columns: [
-                    {data: 'id', name: 'id'},
                     {data: 'contact_id', name: 'contact_id'},
-                    {data: 'razorpay_acc_id', name: 'razorpay_acc_id'},
-                    {data: 'account_type', name: 'account_type'},
-                    {data: 'ifsc', name: 'account_type'},
-                    {data: 'bank_name', name: 'bank_name'},
-                    {data: 'beneficiary_name', name: 'beneficiary_name'},
-                    {data: 'account_number', name: 'account_number'},
-                    {data: 'upi_username', name: 'upi_username'},
-                    {data: 'upi_handle', name: 'upi_handle'},
-                    {data: 'upi_address', name: 'upi_address'},
-                    {data: 'status', name: 'status'},
+                    {data: 'count', name: 'count'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

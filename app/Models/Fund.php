@@ -24,4 +24,8 @@ class Fund extends Model
         'upi_address',
         'status'
     ];
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class, 'contact_id', 'id');
+    }
 }
