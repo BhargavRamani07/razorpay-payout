@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Fund</h1>
+                <h1 class="m-1">Fund</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -63,8 +63,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Account Type">Account Number <span class="text-danger">*</span></label>
-                                            <input type="text" name="account_number" id="account_number" class="form-control bank-common-input" placeholder="Enter account number" required>
-                                            <input type="text" name="re_account_number" class="form-control bank-common-input mt-2" placeholder="Re-enter account number" required>
+                                            <input type="text" name="account_number" id="account_number" class="form-control bank-common-input" placeholder="Enter Account No." required>
+                                            <input type="text" name="account_number_confirmation" class="form-control bank-common-input mt-2" placeholder="Enter Account No. Confirmation" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -143,7 +143,7 @@
                 account_number: {
                     required: true,  
                 },
-                re_account_number: {
+                account_number_confirmation: {
                     required: true,
                     equalTo: '#account_number'
                 },
@@ -173,9 +173,9 @@
                 account_number : {
                     required: "Please enter account number"
                 },
-                re_account_number : {
-                    required: "Please re-enter account number",
-                    equalTo: "Account no. does not match"
+                account_number_confirmation : {
+                    required: "Please enter account number confirmation",
+                    equalTo: "The account number confirmation does not match."
                 },
                 ifsc : {
                     required: "Please enter IFSC code",

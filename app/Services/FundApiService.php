@@ -27,8 +27,17 @@ class FundApiService
 
         $response =  Http::withBasicAuth(env('RAZORPAY_API_KEY'), env('RAZORPAY_KEY_SECRET'))->withHeaders([
             "Content-Type" => "application/json"
-        ])->post(config('constants.fundAccountApis.fund_account'), [
-            $postData
+        ])->post(config('constants.fundAccountApis.fund_account'), $postData);
+
+        return $response;
+    }
+
+    public static function changeStatus($data)
+    {
+        $response =  Http::withBasicAuth(env('RAZORPAY_API_KEY'), env('RAZORPAY_KEY_SECRET'))->withHeaders([
+            "Content-Type" => "application/json"
+        ])->patch(config('constants.fundAccountApis.change_status') . '/' . $data['fund_account_id'], [
+            'active' => $data['status'],
         ]);
 
         return $response;

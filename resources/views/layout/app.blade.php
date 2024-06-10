@@ -16,7 +16,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset("plugins/overlayScrollbars/css/OverlayScrollbars.min.css") }}">
 
-    
+    @livewireStyles
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -56,6 +56,8 @@
     <!-- AdminLTE App -->
     <script src="{{ asset("dist/js/adminlte.js") }}"></script>
 
+    @livewireScripts
+    
     @stack('page-script')
 </body>
 

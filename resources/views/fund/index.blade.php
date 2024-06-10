@@ -1,5 +1,10 @@
 @extends('layout.app')
 
+@push('page-stylelink')
+<link rel="stylesheet" href="{{ asset("plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
+<link rel="stylesheet" href="{{ asset("plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
+<link rel="stylesheet" href="{{ asset("plugins/datatables-buttons/css/buttons.bootstrap4.min.css") }}">
+@endpush
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -26,36 +31,15 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped table-sm" id="fundaccount-report">
                                     <thead>
                                         <tr>
-                                            {{-- <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
-                                            <th>Status</th>
-                                            <th>CONTACT_ID</th> --}}
+                                            <th>CONTACT</th>
+                                            <th>No Accounts</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach($customers as $customer)
-                                        <tr>
-                                            <td>{{ $customer->id }}</td>
-                                            <td>{{ $customer->name }}</td>
-                                            <td><span class="badge badge-pill badge-secondary">{{ $customer->type }}</span></td>
-                                            <td>{{ $customer->phone }}</td>
-                                            <td>{{ $customer->email }}</td>
-                                            <td>
-                                                @if($customer->status == 1)
-                                                    <span class="badge badge-success">Active</span>
-                                                @else
-                                                    <span class="badge badge-danger">Inactive</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $customer->razorpay_con_id }}</td>
-                                        </tr>
-                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -69,3 +53,22 @@
     <!-- /.content -->
 </div>
 @endsection
+@push('page-script')
+<script src="{{ asset("plugins/datatables/jquery.dataTables.min.js") }}"></script>
+<script src="{{ asset("plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#fundaccount-report').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('admin/funds') }}",
+                columns: [
+                    {data: 'contact_id', name: 'contact_id'},
+                    {data: 'count', name: 'count'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+        });
+    </script>
+@endpush

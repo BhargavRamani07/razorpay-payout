@@ -15,7 +15,10 @@
         "laravel/framework": "^8.0",
         "laravel/horizon": "^5.22",
         "laravel/telescope": "^5.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "livewire/livewire": "^2.12",
+        "razorpay/razorpay": "^2.9",
+        "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
